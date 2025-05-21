@@ -5,6 +5,12 @@ st.set_page_config(layout="wide", page_title="LangSmith Session Annotator")
 st.session_state.project_id = "7850c373-f1e7-4138-94b9-05253ecee199"
 st.session_state.project_name = "langsmtih_stefan"
 import os
+import streamlit as st
+
+# Set environment variables from Streamlit secrets
+os.environ["LANGSMITH_API_KEY"] = st.secrets["LANGSMITH_API_KEY"]
+os.environ["LANGCHAIN_TRACING_V2"] = st.secrets.get("LANGCHAIN_TRACING_V2", "true")
+
 import uuid
 from langsmith.client import Client
 from datetime import datetime, timezone
